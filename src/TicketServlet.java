@@ -16,7 +16,7 @@ public class TicketServlet extends HttpServlet {
 	
 	private static String INSERT = "/create.jsp";
 	private static String EDIT = "/update.jsp";
-	private static String LIST_TICKET = "/listPizza.jsp";
+	private static String LIST_TICKET = "/listTickets.jsp";
 	private TicketDAO dao;
 	
        

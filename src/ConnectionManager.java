@@ -6,8 +6,8 @@ public class ConnectionManager {
 	static Connection con;
 	private static final String DB_DRIVER = "oracle.jdbc.driver.OracleDriver";
 	private static final String DB_CONNECTION = "jdbc:oracle:thin:@localhost:1521:xe";
-	private static final String DB_USER = "MYPIZZA";
-	private static final String DB_PASSWORD = "1234";
+	private static final String DB_USER = "kopi";
+	private static final String DB_PASSWORD = "bean";
 
 	public static Connection getConnection() {
 			

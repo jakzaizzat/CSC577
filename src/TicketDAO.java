@@ -15,16 +15,16 @@ public class TicketDAO {
 		int ticketAdult = bean.getAdultTicket();
 		int ticketChild = bean.getChildticket();
 		
-		
+		System.out.println("ticketid:" + ticketId);
 		try{
 			//connect to DB
 			
 			currentCon = ConnectionManager.getConnection();
-			ps=currentCon.prepareStatement("insert into ticket (ticketid, orderdate, adultticket, childticket)values(?,?,?,?)");
-			ps.setInt(1,ticketId);
-			ps.setString(2,ticketDate);
-			ps.setInt(3,ticketAdult);
-			ps.setInt(4,ticketChild);
+			ps=currentCon.prepareStatement("insert into ticketorder (orderdate, adultticket, childticket)values(?,?,?)");
+			//ps.setInt(1,ticketId);
+			ps.setString(1,ticketDate);
+			ps.setInt(2,ticketAdult);
+			ps.setInt(3,ticketChild);
 
 			ps.executeUpdate();
 		} catch(Exception ex){
@@ -50,6 +50,8 @@ public class TicketDAO {
 				currentCon = null;
 			}
 		}
+		
+		System.out.println("Done add ticket");
 		//return bean
 	}
 	
@@ -99,12 +101,12 @@ public class TicketDAO {
 			currentCon = ConnectionManager.getConnection();
 			stmt = currentCon.createStatement();
 			
-			ResultSet rs = stmt.executeQuery("select * from ticket");
+			ResultSet rs = stmt.executeQuery("select * from ticketorder");
 			
 			while(rs.next()){
 				TicketInfo ticket = new TicketInfo();
 				ticket.setTicketId(rs.getInt("ticketid"));
-				ticket.setTicketdate(rs.getString("ticketdate"));
+				ticket.setTicketdate(rs.getString("orderdate"));
 				ticket.setAdultTicket(rs.getInt("adultticket"));
 				ticket.setChildticket(rs.getInt("childticket"));
 				
