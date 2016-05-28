@@ -60,7 +60,7 @@ public class TicketDAO {
 	public void deleteTicket(int ticketId){
 		try{
 			currentCon = ConnectionManager.getConnection();
-			ps = currentCon.prepareStatement("delete from ticket where ticketid=?");
+			ps = currentCon.prepareStatement("delete from ticketorder where ticketid=?");
 			//parameter start with 1
 			ps.setInt(1,ticketId);
 			ps.executeUpdate();
@@ -77,9 +77,12 @@ public class TicketDAO {
 		String ticketDate = bean.getTicketdate();
 		int ticketAdult = bean.getAdultTicket();
 		int ticketChild = bean.getChildticket();
+		System.out.println("In Update Ticket - TicketDAO");
+		System.out.println(ticketId + ticketDate + ticketAdult + ticketChild);
 		
-		String searchQuery = "UPDATE ticket SET ticketid='" + ticketId + "', ticketdate='" + ticketDate+ "', ticketAdult= '" + ticketAdult + "', ticketChild='" + ticketChild + "'";
+		String searchQuery = "UPDATE ticketorder SET ticketid='" + ticketId + "', orderdate='" + ticketDate+ "', adultticket= '" + ticketAdult + "', childticket='" + ticketChild + "' WHERE ticketid= '" + ticketId + "'  ";
 		
+	
 		try{
 		currentCon = ConnectionManager.getConnection();
 		stmt = currentCon.createStatement();
@@ -130,14 +133,14 @@ public class TicketDAO {
 		
 		try{
 			currentCon = ConnectionManager.getConnection();
-			ps = currentCon.prepareStatement("select * from ticket where ticketid=?");
+			ps = currentCon.prepareStatement("select * from ticketorder where ticketid=?");
 			
 			ps.setInt(1, ticketid);
 			ResultSet rs = ps.executeQuery();
 			
 			if(rs.next()){
 				ticket.setTicketId(rs.getInt("ticketid"));
-				ticket.setTicketdate(rs.getString("ticketdate"));
+				ticket.setTicketdate(rs.getString("orderdate"));
 				ticket.setAdultTicket(rs.getInt("adultticket"));
 				ticket.setChildticket(rs.getInt("childticket"));
 			}

@@ -15,7 +15,7 @@ public class TicketServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private static String INSERT = "/create.jsp";
-	private static String EDIT = "/update.jsp";
+	private static String EDIT = "/edit.jsp";
 	private static String LIST_TICKET = "/listTickets.jsp";
 	private TicketDAO dao;
 	
@@ -37,22 +37,31 @@ public class TicketServlet extends HttpServlet {
 		
 		String forward="";
 		String action = request.getParameter("action");
-		
+		System.out.println("In doGet");
 		if(action.equalsIgnoreCase("delete")){
 			int ticketid = Integer.parseInt(request.getParameter("ticketid"));
+			RequestDispatcher view = request.getRequestDispatcher(LIST_TICKET);
 			dao.deleteTicket(ticketid);
 			forward = LIST_TICKET;
 			request.setAttribute("tickets", dao.getAllTicket());
+			view.forward(request, response);
 		}else if(action.equalsIgnoreCase("edit")){
 			forward = EDIT;
 			int ticketid = Integer.parseInt(request.getParameter("ticketid"));
+			RequestDispatcher view = request.getRequestDispatcher(EDIT);
+			System.out.println("In Edit" + ticketid);
 			TicketInfo ticket = dao.getTicketById(ticketid);
-			request.setAttribute("tickets", ticket);
+			request.setAttribute("ticket", ticket);
+			view.forward(request, response);
 		}else if(action.equalsIgnoreCase("listTicket")){
 			forward = LIST_TICKET;
+			RequestDispatcher view = request.getRequestDispatcher(LIST_TICKET);
 			request.setAttribute("tickets", dao.getAllTicket());
+			view.forward(request, response);
+			System.out.println("In listTicket");
 		}else{
 			forward = INSERT;
+			System.out.println("In INSERT");
 		}
 		
 	}
@@ -68,7 +77,9 @@ public class TicketServlet extends HttpServlet {
 		ticket.setAdultTicket(Integer.parseInt(request.getParameter("adult")));
 		ticket.setChildticket(Integer.parseInt(request.getParameter("child")));
 		
-		String ticketid = request.getParameter("ticketid");
+		String ticketid = request.getParameter("ticketId");
+		
+		System.out.println("Ticket ID is "+ticketid);
 		
 		if(ticketid == null || ticketid.isEmpty()){
 			dao.add(ticket);
@@ -81,8 +92,6 @@ public class TicketServlet extends HttpServlet {
 		RequestDispatcher view = request.getRequestDispatcher(LIST_TICKET);
 		request.setAttribute("tickets", dao.getAllTicket());
 		view.forward(request, response);
-		
-		
 		
 		
 		
