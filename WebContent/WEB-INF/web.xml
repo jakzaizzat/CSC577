@@ -19,4 +19,12 @@
     <servlet-name>TicketServlet</servlet-name>
     <url-pattern>/TicketServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+        <servlet-name>register</servlet-name>
+        <servlet-class>RegisterDAO</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>register</servlet-name>
+        <url-pattern>/registerDAO</url-pattern>
+    </servlet-mapping>
 </web-app>
