@@ -1,46 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-    
-
-<jsp:include page="/WEB-INF/template/header.jsp"/>
-
-
-<div class="row">
-  <div class="col-md-8 col-md-offset-2">
-    
-  <h1 class="text-center">Home</h1>
-  <table class="table table-striped table-hover ">
-            <thead>
-            <tr>
-              <th># Order ID</th>
-              <th>Date</th>
-              <th>Adult</th>
-              <th>Child</th>
-              <th>Total</th>
-              <th>Options</th>
-            </tr>
-            </thead>
-            <tbody>
-            <c:forEach items="${tickets}" var="ticket">
-	            <tr>
-	              <td><c:out value="${ticket.ticketId}" /></td>
-	              <td><c:out value="${ticket.ticketdate}" /></td>
-	              <td><c:out value="${ticket.adultTicket}" /></td>
-	              <td><c:out value="${ticket.childticket}" /></td>
-	              <td>RM200</td>
-	              <td><a href="TicketServlet?action=edit&ticketid=<c:out value='${ticket.ticketId}'/>" class="btn btn-raised btn-info btn-xs">Edit</a><a href="TicketServlet?action=delete&ticketid=<c:out value="${ticket.ticketId}"/>" class="btn btn-raised btn-danger btn-xs">Delete</a></td>
-	            </tr>
-            </c:forEach>
-            </tbody>
-          </table>
-
-  </div>
-
-</div>
-
-
 <!-- Open source code -->
 <script>
   window.page = window.location.hash || "#about";
@@ -134,6 +91,3 @@
 
 </body>
 </html>
-
-
-<jsp:include page="/WEB-INF/template/footer.jsp"/>
