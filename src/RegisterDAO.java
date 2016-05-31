@@ -1,4 +1,4 @@
-import java.util.*;
+
 import java.sql.*;
 import java.io.*;
 import javax.servlet.*;
@@ -28,8 +28,8 @@ public class RegisterDAO extends HttpServlet{
 			
 			ps=currentCon.prepareStatement("insert into customer (email, username, password, staff)values(?,?,?,?)");
 			
-			ps.setString(1, username);
-			ps.setString(2, email);
+			ps.setString(1, email);
+			ps.setString(2, username);
 			ps.setString(3, password);
 			ps.setInt(4, staff);
 			

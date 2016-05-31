@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-    <%@ page session="true" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 
 <html>
@@ -46,11 +46,19 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="list.html">Logo</a>
+      <a class="navbar-brand" href="list.<!DOCTYPE html>
+      <html>
+      <head>
+        <title></title>
+      </head>
+      <body>
+      
+      </body>
+      </html>">Logo</a>
     </div>
     <div class="navbar-collapse collapse navbar-material-light-blue-collapse">
       <ul class="nav navbar-nav">
-        <li><a href="TicketServlet?action=listTicketByUsername">Dashboard</a></li>
+        <li><a href="javascript:void(0)">Create</a></li>
         <li><a href="javascript:void(0)">Read</a></li>
         <li><a href="javascript:void(0)">Update</a></li>
         <li><a href="javascript:void(0)">Delete</a></li>
@@ -70,37 +78,40 @@
 </div>
 
 
+
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
+	  
+	  
+	  <c:if test="${errorMessage != null}" >
+		  <div class="alert alert-dismissible alert-danger">
+		  	<button type="button" class="close" data-dismiss="alert">×</button>
+		  	<strong>${errorMessage}</strong>
+		  	If you didn't have account yet. 
+		  	<a href="register.jsp" class="alert-link">Register here</a>
+		  </div>
+	  </c:if>
+	  
+  <div class="well bs-component">
+  <form class="form-horizontal" action="LoginDAO" method="post">
+  <fieldset>
+    <legend>Login</legend>
+    <div class="form-group">
+      <label for="inputusernmae" class="col-md-2 control-label">Username</label>
+
+      <div class="col-md-10">
+        <input type="text" class="form-control" id="inputusername" placeholder="Username" name="username">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputPassword" class="col-md-2 control-label">Password</label>
+
+      <div class="col-md-10">
+        <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="password">
+      </div>
+    </div>
     
-  
-  <h3 class="text-center">Hi,<strong><%= session.getAttribute("username") %></strong>. Want to buy ticket now? </h3>
-  
-  
-	
-  <form class="form-horizontal" method="POST" action="TicketServlet" name="formAddTicket">
-  
-  <input type="hidden" value="<%= session.getAttribute("username") %>"  name="username"/>
-  
-  <fieldset>  
-    <div class="form-group">
-      <label for="inputEmail" class="col-md-2 control-label">Date</label>
-      <div class="col-md-10">
-        <input type="date" class="form-control" id="inputEmail" placeholder="Date" name="date">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="adultTicket" class="col-md-2 control-label">Adult</label>
-      <div class="col-md-10">
-        <input type="number" class="form-control" id="adultTicket" placeholder="number" name="adult">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="childTicket" class="col-md-2 control-label">Child</label>
-      <div class="col-md-10">
-        <input type="number" class="form-control" id="childTicket" placeholder="number" name="child">
-      </div>
-    </div>
+    <input type="hidden" name="staff" value="0"/>
     
     <div class="form-group">
       <div class="col-md-10 col-md-offset-2">
@@ -110,6 +121,8 @@
     </div>
   </fieldset>
 </form>
+</div>
+  
 
   </div>
 

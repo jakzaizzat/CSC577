@@ -83,7 +83,7 @@
   <div class="well bs-component">
   <form class="form-horizontal" action="registerDAO" method="post">
   <fieldset>
-    <legend>Login</legend>
+    <legend>Register</legend>
     <div class="form-group">
       <label for="inputusernmae" class="col-md-2 control-label">Username</label>
 

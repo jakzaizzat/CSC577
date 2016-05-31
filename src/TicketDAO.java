@@ -14,17 +14,21 @@ public class TicketDAO {
 		String ticketDate = bean.getTicketdate();
 		int ticketAdult = bean.getAdultTicket();
 		int ticketChild = bean.getChildticket();
+		//String username = (String) session.getAttribute("username");
+		String username = bean.getUsername();
+		
 		
 		System.out.println("ticketid:" + ticketId);
 		try{
 			//connect to DB
 			
 			currentCon = ConnectionManager.getConnection();
-			ps=currentCon.prepareStatement("insert into ticketorder (orderdate, adultticket, childticket)values(?,?,?)");
+			ps=currentCon.prepareStatement("insert into ticketorder (orderdate, adultticket, childticket,username)values(?,?,?,?)");
 			//ps.setInt(1,ticketId);
 			ps.setString(1,ticketDate);
 			ps.setInt(2,ticketAdult);
 			ps.setInt(3,ticketChild);
+			ps.setString(4,username);
 
 			ps.executeUpdate();
 		} catch(Exception ex){
@@ -152,6 +156,41 @@ public class TicketDAO {
 		return ticket;
 		
 	}
+	
+	//list ticket by Username
+		public List<TicketInfo> getAllTicketByUsername(String username){
+			
+			List<TicketInfo> tickets = new ArrayList<TicketInfo>();
+			
+			try{
+				
+				
+				currentCon = ConnectionManager.getConnection();
+				
+				ps = currentCon.prepareStatement("select * from ticketorder where username=?");
+				ps.setString(1, username);
+				
+				ResultSet rs = ps.executeQuery();
+				
+				while(rs.next()){
+					TicketInfo ticket = new TicketInfo();
+					ticket.setTicketId(rs.getInt("ticketid"));
+					ticket.setTicketdate(rs.getString("orderdate"));
+					ticket.setAdultTicket(rs.getInt("adultticket"));
+					ticket.setChildticket(rs.getInt("childticket"));
+					ticket.setUsername(rs.getString("username"));
+					
+					tickets.add(ticket);
+					
+				}
+				
+			}catch(SQLException e){
+				e.printStackTrace();
+			}
+			
+			return tickets;
+			
+		}
 	
 
 
