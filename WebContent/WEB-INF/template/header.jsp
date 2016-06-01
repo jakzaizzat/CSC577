@@ -47,9 +47,9 @@
     </div>
     <div class="navbar-collapse collapse navbar-material-light-blue-collapse">
       <ul class="nav navbar-nav">
-        <li><a href="TicketServlet?action=listTicketByUsername">Dashboard</a></li>
+        <li><a href="TicketServlet?action=listTicketByUsername">Order History</a></li>
         <li><a href="TicketServlet?action=listTicketInCart">Cart</a></li>
-        <li><a href="javascript:void(0)">Update</a></li>
+        <li><a href="/CSC577/create.jsp">Buy</a></li>
         <li><a href="javascript:void(0)">Delete</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">

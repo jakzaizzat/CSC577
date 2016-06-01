@@ -24,7 +24,7 @@
   <p class="text-center">Adult : <c:out value="${ticket.adultTicket * 20}" /></p>
   <p class="text-center">Child : <c:out value="${ticket.childticket * 10}" /></p>
    
-  <h3 class="text-center">Total <c:out value="${ticket.adultTicket * 20 + ticket.childticket * 10}" /> </h3> 
+  <h3 class="text-center">Total RM<c:out value="${ticket.adultTicket * 20 + ticket.childticket * 10}" /> </h3> 
     
   <input type="hidden" name="cmd" value="_xclick" />
   <input type="text" name="business" value="jakzaizzat@gmail.com" />

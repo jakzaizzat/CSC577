@@ -1,6 +1,8 @@
 
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +11,9 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import net.glxn.qrgen.QRCode;
+import net.glxn.qrgen.image.ImageType;
 
 /**
  * Servlet implementation class TicketServlet
@@ -19,8 +24,10 @@ public class TicketServlet extends HttpServlet {
 	private static String INSERT = "/create.jsp";
 	private static String EDIT = "/edit.jsp";
 	private static String LIST_TICKET = "/listTickets.jsp";
+	private static String HISTORY = "/history.jsp";
 	private static String PAYMENT = "/pay.jsp";
 	private static String SINGLE = "/single-ticket.jsp";
+	private static String VIEW = "/single-ticket.jsp";
 	private TicketDAO dao;
 	
        
@@ -47,6 +54,8 @@ public class TicketServlet extends HttpServlet {
 			if(cookie.getName().equals("username")) username = cookie.getValue();
 		}
 		System.out.println("Username by cookie " + username);
+		
+	
 		
 		
 		String forward="";
@@ -78,7 +87,7 @@ public class TicketServlet extends HttpServlet {
 			System.out.println("In listTicket");
 		}else if(action.equalsIgnoreCase("listTicketByUsername")){
 			forward = LIST_TICKET;
-			RequestDispatcher view = request.getRequestDispatcher(LIST_TICKET);
+			RequestDispatcher view = request.getRequestDispatcher(HISTORY);
 			request.setAttribute("tickets", dao.getAllTicketByUsernamePayment(username));
 			view.forward(request, response);
 			System.out.println("In listTicket By Username");
@@ -108,12 +117,21 @@ public class TicketServlet extends HttpServlet {
 			view.forward(request, response);
 	
 			
+		}else if(action.equalsIgnoreCase("viewTicket")){
+			forward = "VIEW";
+			int ticketid = Integer.parseInt(request.getParameter("ticketid"));
+			RequestDispatcher view = request.getRequestDispatcher(SINGLE);
+			TicketInfo ticket = dao.getTicketById(ticketid);
+			request.setAttribute("ticket", ticket);
+			view.forward(request, response);
 		}else{
 			forward = INSERT;
 			System.out.println("In INSERT");
 		}
 		
 	}
+
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

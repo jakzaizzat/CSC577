@@ -12,6 +12,12 @@
             <div class="panel-heading">
               <h3 class="panel-title">Ticket ID: #<c:out value="${ticket.ticketId}" /></h3>
             </div>
+            
+            <% String txt = (String) session.getAttribute("username"); %>
+            <!--  <img src="/CSC577/qrservlet?qrtext&ticketid=<c:out value='${ticket.ticketId}' />" /> -->
+            <img src="/CSC577/qrservlet?qrtext&ticketid=<c:out value='${ticket.ticketId}' />&username=<%= txt %>" class="center-block"  />
+            
+            
             <div class="panel-body">
             <c:out value="${ticket.adultTicket}" /> Adult Ticket
 			</div>

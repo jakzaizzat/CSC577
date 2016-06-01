@@ -35,6 +35,15 @@
         <servlet-name>login</servlet-name>
         <url-pattern>/LoginDAO</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>QRCodeServlet</servlet-name>
+        <servlet-class>QRCodeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>QRCodeServlet</servlet-name>
+        <url-pattern>/qrservlet</url-pattern>
+    </servlet-mapping>
    
    <filter>
     <filter-name>RequestLoggingFilter</filter-name>
