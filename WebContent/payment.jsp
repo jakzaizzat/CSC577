@@ -18,7 +18,8 @@
 <INPUT TYPE="hidden" NAME="currency_code" value="MYR">
 <input type="text" name="return" value="http://localhost:8080/PaypalGS/paypalResponse.jsp" />
 <input type="text" name="cancel_return" value="http://localhost:8080/PaypalGS/paypalResponseCancel.jsp" />
-<input type="text" name="cert_id" value="API Singature" /><input type="Submit" value="Pay with Paypal"/>
+<input type="text" name="cert_id" value="API Singature" />
+<input type="Submit" value="Pay with Paypal"/>
 </form>
 </body>
 </html>

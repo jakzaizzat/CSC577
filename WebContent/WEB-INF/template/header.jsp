@@ -26,7 +26,7 @@
   <link href="http://cdn.rawgit.com/FezVrasta/dropdown.js/master/jquery.dropdown.css" rel="stylesheet">
 
   <!-- Page style -->
-  <link href="style.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
 
   <!-- jQuery -->
   <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
@@ -48,13 +48,13 @@
     <div class="navbar-collapse collapse navbar-material-light-blue-collapse">
       <ul class="nav navbar-nav">
         <li><a href="TicketServlet?action=listTicketByUsername">Dashboard</a></li>
-        <li><a href="javascript:void(0)">Read</a></li>
+        <li><a href="TicketServlet?action=listTicketInCart">Cart</a></li>
         <li><a href="javascript:void(0)">Update</a></li>
         <li><a href="javascript:void(0)">Delete</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
-          <a href="index.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">Hi, Aizzat <i class="material-icons">face</i>
+          <a href="index.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">Hi, <%= session.getAttribute("username") %> <i class="material-icons">face</i>
             <b class="caret"></b></a>
           <ul class="dropdown-menu">
             <li><a href="javascript:void(0)">Settings</a></li>

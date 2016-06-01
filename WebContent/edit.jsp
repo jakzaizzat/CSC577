@@ -14,7 +14,8 @@
 
   <form class="form-horizontal" method="POST" action="TicketServlet" name="formAddTicket">
   
-  <input type="hidden" type="text" name="ticketId" value="<c:out value="${ticket.ticketId}" />" />
+  <input type="hidden" name="ticketId" value="<c:out value="${ticket.ticketId}" />" />
+  <input type="hidden" name="username" value="<c:out value="${ticket.username}" />" />
   <fieldset>  
     <div class="form-group">
       <label for="inputEmail" class="col-md-2 control-label">Date</label>

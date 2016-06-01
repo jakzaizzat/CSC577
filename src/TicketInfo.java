@@ -7,6 +7,7 @@ public class TicketInfo {
 	private int adultTicket;
 	private int childticket;
 	private String username;
+	private int payment;
 	
 	
 	public int getTicketId() {
@@ -38,6 +39,12 @@ public class TicketInfo {
 	}
 	public void setUsername(String username){
 		this.username = username;
+	}
+	public int getPayment(){
+		return payment;
+	}
+	public void setPayment(int payment){
+		this.payment = payment;
 	}
 	
 	@Override

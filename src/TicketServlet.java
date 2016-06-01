@@ -19,6 +19,8 @@ public class TicketServlet extends HttpServlet {
 	private static String INSERT = "/create.jsp";
 	private static String EDIT = "/edit.jsp";
 	private static String LIST_TICKET = "/listTickets.jsp";
+	private static String PAYMENT = "/pay.jsp";
+	private static String SINGLE = "/single-ticket.jsp";
 	private TicketDAO dao;
 	
        
@@ -54,16 +56,20 @@ public class TicketServlet extends HttpServlet {
 			RequestDispatcher view = request.getRequestDispatcher(LIST_TICKET);
 			dao.deleteTicket(ticketid);
 			forward = LIST_TICKET;
-			request.setAttribute("tickets", dao.getAllTicketByUsername(username));
+			request.setAttribute("tickets", dao.getAllTicketByUsernamePayment(username));
 			view.forward(request, response);
 		}else if(action.equalsIgnoreCase("edit")){
 			forward = EDIT;
+			
 			int ticketid = Integer.parseInt(request.getParameter("ticketid"));
+			
 			RequestDispatcher view = request.getRequestDispatcher(EDIT);
-			System.out.println("In Edit" + ticketid);
+			System.out.println("In Edit " + ticketid);
+			
 			TicketInfo ticket = dao.getTicketById(ticketid);
-			request.setAttribute("tickets", ticket);
+			request.setAttribute("ticket", ticket);
 			view.forward(request, response);
+			
 		}else if(action.equalsIgnoreCase("listTicket")){
 			forward = LIST_TICKET;
 			RequestDispatcher view = request.getRequestDispatcher(LIST_TICKET);
@@ -72,11 +78,36 @@ public class TicketServlet extends HttpServlet {
 			System.out.println("In listTicket");
 		}else if(action.equalsIgnoreCase("listTicketByUsername")){
 			forward = LIST_TICKET;
-					
 			RequestDispatcher view = request.getRequestDispatcher(LIST_TICKET);
-			request.setAttribute("tickets", dao.getAllTicketByUsername(username));
+			request.setAttribute("tickets", dao.getAllTicketByUsernamePayment(username));
 			view.forward(request, response);
 			System.out.println("In listTicket By Username");
+		}else if(action.equalsIgnoreCase("listTicketInCart")){
+			forward = LIST_TICKET;
+			RequestDispatcher view = request.getRequestDispatcher(LIST_TICKET);
+			request.setAttribute("tickets", dao.getAllTicketByUsernameCart(username));
+			view.forward(request, response);
+		}else if(action.equalsIgnoreCase("pay")){
+			forward = PAYMENT;
+			int ticketid = Integer.parseInt(request.getParameter("ticketid"));
+			RequestDispatcher view = request.getRequestDispatcher(PAYMENT);
+			
+			TicketInfo ticket = dao.getTicketById(ticketid);
+			request.setAttribute("ticket", ticket);
+			view.forward(request, response);
+			
+		}else if(action.equalsIgnoreCase("cartToPayment")){
+			forward = LIST_TICKET;
+			int ticketid = Integer.parseInt(request.getParameter("ticketid"));
+			RequestDispatcher view = request.getRequestDispatcher(SINGLE);
+			
+			dao.changeStatusPayment(ticketid);
+			request.setAttribute("errorMessage", "Thanks for the payment");
+			TicketInfo ticket = dao.getTicketById(ticketid);
+			request.setAttribute("ticket", ticket);
+			view.forward(request, response);
+	
+			
 		}else{
 			forward = INSERT;
 			System.out.println("In INSERT");
@@ -95,6 +126,7 @@ public class TicketServlet extends HttpServlet {
 		ticket.setAdultTicket(Integer.parseInt(request.getParameter("adult")));
 		ticket.setChildticket(Integer.parseInt(request.getParameter("child")));
 		ticket.setUsername(request.getParameter("username"));
+		ticket.setPayment(Integer.parseInt(request.getParameter("payment")));
 		
 		System.out.println("Request for username " + request.getParameter("username"));
 		
@@ -106,10 +138,12 @@ public class TicketServlet extends HttpServlet {
 		if(ticketid == null || ticketid.isEmpty()){
 			System.out.println("Entering ADD");
 			dao.add(ticket);
+			request.setAttribute("errorMessage", "Done Added. You're good to go");
 		}else{
 			ticket.setTicketId(Integer.parseInt(ticketid));
 			System.out.println("Entering UPDATE");
 			dao.updateTicket(ticket);
+			request.setAttribute("errorMessage", "Done edit. You're good to go");
 		}
 		
 		
@@ -119,7 +153,7 @@ public class TicketServlet extends HttpServlet {
 		System.out.println("Username in parameter is " + username);
 		
 		RequestDispatcher view = request.getRequestDispatcher(LIST_TICKET);
-		request.setAttribute("tickets", dao.getAllTicketByUsername(username));
+		request.setAttribute("tickets", dao.getAllTicketByUsernameCart(username));
 		view.forward(request, response);
 		
 		

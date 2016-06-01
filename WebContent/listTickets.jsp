@@ -9,7 +9,13 @@
 
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
-    
+  <c:if test="${errorMessage != null}" >
+    <div class="alert alert-dismissible alert-success">
+		 <button type="button" class="close" data-dismiss="alert">×</button>
+		 <strong>${errorMessage}</strong> 
+	</div>
+  </c:if>
+	    
   <h1 class="text-center">Home</h1>
   <table class="table table-striped table-hover ">
             <thead>
@@ -30,7 +36,11 @@
 	              <td><c:out value="${ticket.adultTicket}" /></td>
 	              <td><c:out value="${ticket.childticket}" /></td>
 	              <td>RM200</td>
-	              <td><a href="TicketServlet?action=edit&ticketid=<c:out value='${ticket.ticketId}'/>" class="btn btn-raised btn-info btn-xs">Edit</a><a href="TicketServlet?action=delete&ticketid=<c:out value="${ticket.ticketId}"/>" class="btn btn-raised btn-danger btn-xs">Delete</a></td>
+	              <td>
+	              	<a href="TicketServlet?action=pay&ticketid=<c:out value='${ticket.ticketId}'/>" class="btn btn-raised btn-success btn-xs">Pay</a>
+	              	<a href="TicketServlet?action=edit&ticketid=<c:out value='${ticket.ticketId}'/>" class="btn btn-raised btn-info btn-xs">Edit</a>
+	              	<a href="TicketServlet?action=delete&ticketid=<c:out value="${ticket.ticketId}"/>" class="btn btn-raised btn-danger btn-xs">Delete</a>
+	              </td>
 	            </tr>
             </c:forEach>
             </tbody>

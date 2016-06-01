@@ -17,6 +17,7 @@
   <form class="form-horizontal" method="POST" action="TicketServlet" name="formAddTicket">
   
   <input type="hidden" value="<%= session.getAttribute("username") %>"  name="username"/>
+  <input type="hidden" value="0"  name="payment"/>
   
   <fieldset>  
     <div class="form-group">

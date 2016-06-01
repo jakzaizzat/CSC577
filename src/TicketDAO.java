@@ -16,6 +16,7 @@ public class TicketDAO {
 		int ticketChild = bean.getChildticket();
 		//String username = (String) session.getAttribute("username");
 		String username = bean.getUsername();
+		int payment = bean.getPayment();
 		
 		
 		System.out.println("ticketid:" + ticketId);
@@ -23,13 +24,14 @@ public class TicketDAO {
 			//connect to DB
 			
 			currentCon = ConnectionManager.getConnection();
-			ps=currentCon.prepareStatement("insert into ticketorder (orderdate, adultticket, childticket,username)values(?,?,?,?)");
+			ps=currentCon.prepareStatement("insert into ticketorder (orderdate, adultticket, childticket,username,payment)values(?,?,?,?,?)");
 			//ps.setInt(1,ticketId);
 			ps.setString(1,ticketDate);
 			ps.setInt(2,ticketAdult);
 			ps.setInt(3,ticketChild);
 			ps.setString(4,username);
-
+			ps.setInt(5,payment);
+			
 			ps.executeUpdate();
 		} catch(Exception ex){
 			System.out.println("Failed: An exception has occured! " + ex);
@@ -147,6 +149,7 @@ public class TicketDAO {
 				ticket.setTicketdate(rs.getString("orderdate"));
 				ticket.setAdultTicket(rs.getInt("adultticket"));
 				ticket.setChildticket(rs.getInt("childticket"));
+				ticket.setUsername(rs.getString("username"));
 			}
 			
 		}catch(SQLException e){
@@ -157,8 +160,8 @@ public class TicketDAO {
 		
 	}
 	
-	//list ticket by Username
-		public List<TicketInfo> getAllTicketByUsername(String username){
+	//list ticket by Username for cart
+		public List<TicketInfo> getAllTicketByUsernameCart(String username){
 			
 			List<TicketInfo> tickets = new ArrayList<TicketInfo>();
 			
@@ -167,7 +170,7 @@ public class TicketDAO {
 				
 				currentCon = ConnectionManager.getConnection();
 				
-				ps = currentCon.prepareStatement("select * from ticketorder where username=?");
+				ps = currentCon.prepareStatement("select * from ticketorder where username=? and payment=0");
 				ps.setString(1, username);
 				
 				ResultSet rs = ps.executeQuery();
@@ -191,6 +194,69 @@ public class TicketDAO {
 			return tickets;
 			
 		}
+		
+		//list ticket by Username after payment
+				public List<TicketInfo> getAllTicketByUsernamePayment(String username){
+					
+					List<TicketInfo> tickets = new ArrayList<TicketInfo>();
+					
+					try{
+						
+						
+						currentCon = ConnectionManager.getConnection();
+						
+						ps = currentCon.prepareStatement("select * from ticketorder where username=? and payment=1");
+						ps.setString(1, username);
+						
+						ResultSet rs = ps.executeQuery();
+						
+						while(rs.next()){
+							TicketInfo ticket = new TicketInfo();
+							ticket.setTicketId(rs.getInt("ticketid"));
+							ticket.setTicketdate(rs.getString("orderdate"));
+							ticket.setAdultTicket(rs.getInt("adultticket"));
+							ticket.setChildticket(rs.getInt("childticket"));
+							ticket.setUsername(rs.getString("username"));
+							
+							tickets.add(ticket);
+							
+						}
+						
+					}catch(SQLException e){
+						e.printStackTrace();
+					}
+					
+					return tickets;
+					
+				}
+				
+				// ChangeStatusPayment
+				public TicketInfo changeStatusPayment(int ticketid){
+					
+					TicketInfo ticket = new TicketInfo();
+					
+					try{
+						currentCon = ConnectionManager.getConnection();
+						ps = currentCon.prepareStatement("update ticketorder set payment=1 where ticketid=?");
+						
+						ps.setInt(1, ticketid);
+						ResultSet rs = ps.executeQuery();
+						
+						if(rs.next()){
+							ticket.setTicketId(rs.getInt("ticketid"));
+							ticket.setTicketdate(rs.getString("orderdate"));
+							ticket.setAdultTicket(rs.getInt("adultticket"));
+							ticket.setChildticket(rs.getInt("childticket"));
+							ticket.setUsername(rs.getString("username"));
+						}
+						
+					}catch(SQLException e){
+						e.printStackTrace();
+					}
+					
+					return ticket;
+					
+				}
 	
 
 
