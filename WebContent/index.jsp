@@ -7,6 +7,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 </head>
 <body>
-	<jsp:forward page="/TicketServlet?action=listTicket" ></jsp:forward>
+	<jsp:forward page="/OrderServlet?action=listTicket" ></jsp:forward>
 </body>
 </html>

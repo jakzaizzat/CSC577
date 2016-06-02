@@ -2,58 +2,38 @@
 public class TicketInfo {
 	
 	
-	private int ticketId;
-	private String ticketDate;
-	private int adultTicket;
-	private int childticket;
-	private String username;
-	private int payment;
+	private int priceId;
+	private float adultPrice;
+	private float childPrice;
 	
 	
-	public int getTicketId() {
-		return ticketId;
+	public int getPriceId(){
+		return priceId;
 	}
-	public void setTicketId(int ticketId) {
-		this.ticketId = ticketId;
+	
+	public void setPriceId(int priceId){
+		this.priceId = priceId;
 	}
-	public String getTicketdate() {
-		return ticketDate;
+	
+	public float getAdultPrice() {
+		return adultPrice;
 	}
-	public void setTicketdate(String ticketdate) {
-		ticketDate = ticketdate;
+	public void setAdultPrice(float adultPrice) {
+		this.adultPrice = adultPrice;
 	}
-	public int getAdultTicket() {
-		return adultTicket;
+	public float getChildPrice() {
+		return childPrice;
 	}
-	public void setAdultTicket(int adultTicket) {
-		this.adultTicket = adultTicket;
+	public void setChildPrice(float childPrice) {
+		this.childPrice = childPrice;
 	}
-	public int getChildticket() {
-		return childticket;
-	}
-	public void setChildticket(int childticket) {
-		this.childticket = childticket;
-	}
-	public String getUsername(){
-		return username;
-	}
-	public void setUsername(String username){
-		this.username = username;
-	}
-	public int getPayment(){
-		return payment;
-	}
-	public void setPayment(int payment){
-		this.payment = payment;
-	}
+	
 	
 	@Override
 	public String toString() {
-		return "TicketInfo [ticketId=" + ticketId + ", Ticketdate="
-				+ ticketDate + ", adultTicket=" + adultTicket
-				+ ", childticket=" + childticket + "]";
+		return "TicketInfo [adultPrice=" + adultPrice + ", childPrice="
+				+ childPrice + "]";
 	}
 	
-	
-	
+
 }

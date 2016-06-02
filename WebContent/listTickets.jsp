@@ -16,7 +16,7 @@
 	</div>
   </c:if>
 	    
-  <h1 class="text-center">Home</h1>
+  <h1 class="text-center">Cart</h1>
   <table class="table table-striped table-hover ">
             <thead>
             <tr>
@@ -37,9 +37,9 @@
 	              <td><c:out value="${ticket.childticket}" /></td>
 	              <td>RM200</td>
 	              <td>
-	              	<a href="TicketServlet?action=pay&ticketid=<c:out value='${ticket.ticketId}'/>" class="btn btn-raised btn-success btn-xs">Pay</a>
-	              	<a href="TicketServlet?action=edit&ticketid=<c:out value='${ticket.ticketId}'/>" class="btn btn-raised btn-info btn-xs">Edit</a>
-	              	<a href="TicketServlet?action=delete&ticketid=<c:out value="${ticket.ticketId}"/>" class="btn btn-raised btn-danger btn-xs">Delete</a>
+	              	<a href="OrderServlet?action=pay&ticketid=<c:out value='${ticket.ticketId}'/>" class="btn btn-raised btn-success btn-xs">Pay</a>
+	              	<a href="OrderServlet?action=edit&ticketid=<c:out value='${ticket.ticketId}'/>" class="btn btn-raised btn-info btn-xs">Edit</a>
+	              	<a href="OrderServlet?action=delete&ticketid=<c:out value="${ticket.ticketId}"/>" class="btn btn-raised btn-danger btn-xs">Delete</a>
 	              </td>
 	            </tr>
             </c:forEach>

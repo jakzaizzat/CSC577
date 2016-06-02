@@ -11,41 +11,39 @@
   </welcome-file-list>
   <servlet>
     <description></description>
-    <display-name>TicketServlet</display-name>
-    <servlet-name>TicketServlet</servlet-name>
-    <servlet-class>TicketServlet</servlet-class>
+    <display-name>OrderServlet</display-name>
+    <servlet-name>OrderServlet</servlet-name>
+    <servlet-class>OrderServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>TicketServlet</servlet-name>
-    <url-pattern>/TicketServlet</url-pattern>
+    <servlet-name>OrderServlet</servlet-name>
+    <url-pattern>/OrderServlet</url-pattern>
   </servlet-mapping>
   <servlet>
-        <servlet-name>register</servlet-name>
-        <servlet-class>RegisterDAO</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>register</servlet-name>
-        <url-pattern>/registerDAO</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>login</servlet-name>
-        <servlet-class>LoginDAO</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>login</servlet-name>
-        <url-pattern>/LoginDAO</url-pattern>
-    </servlet-mapping>
-    
-    <servlet>
-        <servlet-name>QRCodeServlet</servlet-name>
-        <servlet-class>QRCodeServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>QRCodeServlet</servlet-name>
-        <url-pattern>/qrservlet</url-pattern>
-    </servlet-mapping>
-   
-   <filter>
+    <servlet-name>register</servlet-name>
+    <servlet-class>RegisterDAO</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>register</servlet-name>
+    <url-pattern>/registerDAO</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>login</servlet-name>
+    <servlet-class>LoginDAO</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>login</servlet-name>
+    <url-pattern>/LoginDAO</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>QRCodeServlet</servlet-name>
+    <servlet-class>QRCodeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>QRCodeServlet</servlet-name>
+    <url-pattern>/qrservlet</url-pattern>
+  </servlet-mapping>
+  <filter>
     <filter-name>RequestLoggingFilter</filter-name>
     <filter-class>RequestLoggingFilter</filter-class>
   </filter>
@@ -53,8 +51,7 @@
     <filter-name>AuthenticationFilter</filter-name>
     <filter-class>AuthenticationFilter</filter-class>
   </filter>
-  
-    <filter-mapping>
+  <filter-mapping>
     <filter-name>RequestLoggingFilter</filter-name>
     <url-pattern>/*</url-pattern>
     <dispatcher>REQUEST</dispatcher>
@@ -63,7 +60,14 @@
     <filter-name>AuthenticationFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
-  
-   
-    
+  <servlet>
+    <description></description>
+    <display-name>TicketServlet</display-name>
+    <servlet-name>TicketServlet</servlet-name>
+    <servlet-class>TicketServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TicketServlet</servlet-name>
+    <url-pattern>/TicketServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

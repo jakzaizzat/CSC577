@@ -12,7 +12,7 @@
   <h1 class="text-center">Edit Ticket ID: <c:out value="${ticket.ticketId}" /></h1>
   
 
-  <form class="form-horizontal" method="POST" action="TicketServlet" name="formAddTicket">
+  <form class="form-horizontal" method="POST" action="OrderServlet" name="formAddTicket">
   
   <input type="hidden" name="ticketId" value="<c:out value="${ticket.ticketId}" />" />
   <input type="hidden" name="username" value="<c:out value="${ticket.username}" />" />

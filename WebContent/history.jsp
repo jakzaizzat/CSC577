@@ -37,9 +37,9 @@
 	              <td><c:out value="${ticket.childticket}" /></td>
 	              <td>RM200</td>
 	              <td>
-	              	<a href="TicketServlet?action=viewTicket&ticketid=<c:out value='${ticket.ticketId}'/>" class="btn btn-raised btn-success btn-xs">View</a>
-	              	<a href="TicketServlet?action=edit&ticketid=<c:out value='${ticket.ticketId}'/>" class="btn btn-raised btn-info btn-xs">Edit</a>
-	              	<a href="TicketServlet?action=delete&ticketid=<c:out value="${ticket.ticketId}"/>" class="btn btn-raised btn-danger btn-xs">Delete</a>
+	              	<a href="OrderServlet?action=viewTicket&ticketid=<c:out value='${ticket.ticketId}'/>" class="btn btn-raised btn-success btn-xs">View</a>
+	              	<a href="OrderServlet?action=edit&ticketid=<c:out value='${ticket.ticketId}'/>" class="btn btn-raised btn-info btn-xs">Edit</a>
+	              	<a href="OrderServlet?action=delete&ticketid=<c:out value="${ticket.ticketId}"/>" class="btn btn-raised btn-danger btn-xs">Delete</a>
 	              </td>
 	            </tr>
             </c:forEach>

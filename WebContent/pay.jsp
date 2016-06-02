@@ -34,8 +34,8 @@
   <input type="text" name="rm" value="1" />
   <input type="text" name="amount" value="<c:out value="${ticket.adultTicket * 20 + ticket.childticket * 10}" />"/>
   <input TYPE="hidden" NAME="currency_code" value="MYR">
-  <input type="text" name="return" value="http://localhost:8081/CSC577/TicketServlet?action=cartToPayment&ticketid=<c:out value="${ticket.ticketId}" />" />
-  <input type="text" name="cancel_return" value="http://localhost:8081/CSC577/TicketServlet?action=listTicketInCart" />
+  <input type="text" name="return" value="http://localhost:8081/CSC577/OrderServlet?action=cartToPayment&ticketid=<c:out value="${ticket.ticketId}" />" />
+  <input type="text" name="cancel_return" value="http://localhost:8081/CSC577/OrderServlet?action=listTicketInCart" />
   <input type="text" name="cert_id" value="API Singature" />
   <input type="submit" class="btn btn-lg btn-block btn-raised btn-success" value="Pay via Paypal"/>
   

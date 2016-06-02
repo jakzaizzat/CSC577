@@ -8,13 +8,19 @@
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    
+  
+  <c:if test="${errorMessage != null}" >
+    <div class="alert alert-dismissible alert-success">
+		 <button type="button" class="close" data-dismiss="alert">×</button>
+		 <strong>${errorMessage}</strong> 
+	</div>
+  </c:if>  
   
   <h3 class="text-center">Hi,<strong><%= session.getAttribute("username") %></strong>. Want to buy ticket now? </h3>
   
   
 	
-  <form class="form-horizontal" method="POST" action="TicketServlet" name="formAddTicket">
+  <form class="form-horizontal" method="POST" action="OrderServlet" name="formAddTicket">
   
   <input type="hidden" value="<%= session.getAttribute("username") %>"  name="username"/>
   <input type="hidden" value="0"  name="payment"/>
@@ -26,12 +32,14 @@
         <input type="date" class="form-control" id="inputEmail" placeholder="Date" name="date">
       </div>
     </div>
+    <p>Adult: RM20</p>
     <div class="form-group">
       <label for="adultTicket" class="col-md-2 control-label">Adult</label>
       <div class="col-md-10">
         <input type="number" class="form-control" id="adultTicket" placeholder="number" name="adult">
       </div>
     </div>
+    <p>Child: RM20</p>
     <div class="form-group">
       <label for="childTicket" class="col-md-2 control-label">Child</label>
       <div class="col-md-10">
