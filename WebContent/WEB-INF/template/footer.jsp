@@ -6,6 +6,21 @@
     if (window.page != "#about") {
       $(".menu").find("li[data-target=" + window.page + "]").trigger("click");
     }
+    
+    
+    $('#adult, #child').keyup(function(){
+
+		var adult = $('#adult').val() * 20;
+		var child = $('#child').val() * 10;
+
+		var total = adult + child;
+
+		$('.total-price').text( "Total: RM" + total);
+
+
+	});
+    
+    
   });
 
   $(window).on("resize", function () {
@@ -70,6 +85,8 @@
       $("#source-modal").modal();
     });
   });
+  
+  
 </script>
 
 <!-- Twitter Bootstrap -->

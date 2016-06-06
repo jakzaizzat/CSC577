@@ -33,6 +33,9 @@ public class TicketServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String action = request.getParameter("action");
 		
+		
+		String forward="";
+		
 		if(action.equalsIgnoreCase("price")){
 			
 			int priceid = Integer.parseInt(request.getParameter("priceid"));
@@ -41,6 +44,12 @@ public class TicketServlet extends HttpServlet {
 			System.out.println("In Edit Price " + priceid);
 			
 			TicketInfo price = dao.getPriceById(priceid);
+			request.setAttribute("price", price);
+			view.forward(request, response);
+		}else if(action.equalsIgnoreCase("insert")){
+			forward = "INSERT";
+			RequestDispatcher view = request.getRequestDispatcher(INSERT);
+			TicketInfo price = dao.getPriceById(1);
 			request.setAttribute("price", price);
 			view.forward(request, response);
 		}

@@ -47,7 +47,7 @@ public class LoginDAO extends HttpServlet {
             Cookie CookieUserName = new Cookie("username", username);
             CookieUserName.setMaxAge(30*60);
             response.addCookie(CookieUserName);
-        	response.sendRedirect("create.jsp");
+        	response.sendRedirect("/CSC577/TicketServlet?action=insert");
             
         	//RequestDispatcher view = request.getRequestDispatcher(INSERT);
         	//view.forward(request, response);

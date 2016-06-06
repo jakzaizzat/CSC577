@@ -49,8 +49,10 @@
       <ul class="nav navbar-nav">
         <li><a href="OrderServlet?action=listTicketByUsername">Order History</a></li>
         <li><a href="OrderServlet?action=listTicketInCart">Cart</a></li>
-        <li><a href="/CSC577/create.jsp">Buy</a></li>
+        <!-- <li><a href="/CSC577/create.jsp">Buy</a></li> -->
+        <li><a href="OrderServlet?action=insert">Buy</a></li>
         <li><a href="TicketServlet?action=price&priceid=1">Update Price</a></li>
+        <li><a href="TicketServlet?action=insert">Insert Ticket</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">

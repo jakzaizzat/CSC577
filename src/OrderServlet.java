@@ -27,7 +27,6 @@ public class OrderServlet extends HttpServlet {
 	private static String HISTORY = "/history.jsp";
 	private static String PAYMENT = "/pay.jsp";
 	private static String SINGLE = "/single-ticket.jsp";
-	private static String VIEW = "/single-ticket.jsp";
 	private OrderDAO dao;
 	
        
@@ -39,6 +38,7 @@ public class OrderServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
         dao = new OrderDAO();
     }
+    
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -126,6 +126,7 @@ public class OrderServlet extends HttpServlet {
 			view.forward(request, response);
 		}else{
 			forward = INSERT;
+			
 			System.out.println("In INSERT");
 		}
 		
@@ -145,6 +146,7 @@ public class OrderServlet extends HttpServlet {
 		ticket.setChildticket(Integer.parseInt(request.getParameter("child")));
 		ticket.setUsername(request.getParameter("username"));
 		ticket.setPayment(Integer.parseInt(request.getParameter("payment")));
+		ticket.setTotal(Double.parseDouble(request.getParameter("total")));
 		
 		System.out.println("Request for username " + request.getParameter("username"));
 		

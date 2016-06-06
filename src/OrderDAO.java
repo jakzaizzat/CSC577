@@ -17,6 +17,7 @@ public class OrderDAO {
 		//String username = (String) session.getAttribute("username");
 		String username = bean.getUsername();
 		int payment = bean.getPayment();
+		double total = bean.getTotal();
 		
 		
 		System.out.println("ticketid:" + ticketId);
@@ -24,13 +25,14 @@ public class OrderDAO {
 			//connect to DB
 			
 			currentCon = ConnectionManager.getConnection();
-			ps=currentCon.prepareStatement("insert into ticketorder (orderdate, adultticket, childticket,username,payment)values(?,?,?,?,?)");
+			ps=currentCon.prepareStatement("insert into ticketorder (orderdate, adultticket, childticket,username,payment,total)values(?,?,?,?,?,?)");
 			//ps.setInt(1,ticketId);
 			ps.setString(1,ticketDate);
 			ps.setInt(2,ticketAdult);
 			ps.setInt(3,ticketChild);
 			ps.setString(4,username);
 			ps.setInt(5,payment);
+			ps.setDouble(6,total);
 			
 			ps.executeUpdate();
 		} catch(Exception ex){
@@ -257,6 +259,7 @@ public class OrderDAO {
 					return ticket;
 					
 				}
+				
 	
 
 

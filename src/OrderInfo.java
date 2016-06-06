@@ -8,6 +8,9 @@ public class OrderInfo {
 	private int childticket;
 	private String username;
 	private int payment;
+	private double total;
+	
+	
 	
 	
 	public int getTicketId() {
@@ -45,6 +48,12 @@ public class OrderInfo {
 	}
 	public void setPayment(int payment){
 		this.payment = payment;
+	}
+	public double getTotal(){
+		return total;
+	}
+	public void setTotal(double total){
+		this.total = total;
 	}
 	
 	@Override

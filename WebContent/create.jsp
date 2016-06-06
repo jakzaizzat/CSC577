@@ -25,6 +25,8 @@
   <input type="hidden" value="<%= session.getAttribute("username") %>"  name="username"/>
   <input type="hidden" value="0"  name="payment"/>
   
+  
+  
   <fieldset>  
     <div class="form-group">
       <label for="inputEmail" class="col-md-2 control-label">Date</label>
@@ -32,20 +34,25 @@
         <input type="date" class="form-control" id="inputEmail" placeholder="Date" name="date">
       </div>
     </div>
-    <p>Adult: RM20</p>
+    <input type="text" name="price1" value="  <c:out value='${price.adultPrice}' /> " /> 
     <div class="form-group">
       <label for="adultTicket" class="col-md-2 control-label">Adult</label>
       <div class="col-md-10">
-        <input type="number" class="form-control" id="adultTicket" placeholder="number" name="adult">
+        <input type="number" class="form-control" id="adultTicket" placeholder="number" name="adult" id="adult">
       </div>
     </div>
-    <p>Child: RM20</p>
+    <input type="text" name="price2" value="  <c:out value='${price.adultPrice}' /> " /> 
     <div class="form-group">
       <label for="childTicket" class="col-md-2 control-label">Child</label>
       <div class="col-md-10">
-        <input type="number" class="form-control" id="childTicket" placeholder="number" name="child">
+        <input type="number" class="form-control" id="childTicket" placeholder="number" name="child" id="child">
       </div>
     </div>
+    
+    <p>Total</p>
+    <input type="text" name="total" value=""/>
+    
+    <p class="total-price"></p>
     
     <div class="form-group">
       <div class="col-md-10 col-md-offset-2">
@@ -61,4 +68,8 @@
 </div>
 
 
+
 <jsp:include page="/WEB-INF/template/footer.jsp"/>
+
+
+
