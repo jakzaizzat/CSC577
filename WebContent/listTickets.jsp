@@ -7,48 +7,43 @@
 <jsp:include page="/WEB-INF/template/header.jsp"/>
 
 
-<div class="row">
-  <div class="col-md-8 col-md-offset-2">
-  <c:if test="${errorMessage != null}" >
-    <div class="alert alert-dismissible alert-success">
-		 <button type="button" class="close" data-dismiss="alert">×</button>
-		 <strong>${errorMessage}</strong> 
-	</div>
-  </c:if>
-	    
-  <h1 class="text-center">Cart</h1>
-  <table class="table table-striped table-hover ">
-            <thead>
-            <tr>
-              <th># Order ID</th>
-              <th>Date</th>
-              <th>Adult</th>
-              <th>Child</th>
-              <th>Total</th>
-              <th>Options</th>
-            </tr>
-            </thead>
-            <tbody>
-            <c:forEach items="${tickets}" var="ticket">
-	            <tr>
-	              <td><c:out value="${ticket.ticketId}" /></td>
-	              <td><c:out value="${ticket.ticketdate}" /></td>
-	              <td><c:out value="${ticket.adultTicket}" /></td>
-	              <td><c:out value="${ticket.childticket}" /></td>
-	              <td>RM200</td>
-	              <td>
-	              	<a href="OrderServlet?action=pay&ticketid=<c:out value='${ticket.ticketId}'/>" class="btn btn-raised btn-success btn-xs">Pay</a>
-	              	<a href="OrderServlet?action=edit&ticketid=<c:out value='${ticket.ticketId}'/>" class="btn btn-raised btn-info btn-xs">Edit</a>
-	              	<a href="OrderServlet?action=delete&ticketid=<c:out value="${ticket.ticketId}"/>" class="btn btn-raised btn-danger btn-xs">Delete</a>
-	              </td>
-	            </tr>
-            </c:forEach>
-            </tbody>
-          </table>
+ <section class="intro section-padding">
+        <div class="container">
 
-  </div>
+            <div class="text-center">
+                <h2>Cart</h2>
+            </div>
+            
+            <table class="table table-hover dashboard-table ">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Date</th>
+                        <th>Adult</th>
+                        <th>Child</th>
+                        <th>Total</th>
+                        <th>Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <c:forEach items="${tickets}" var="ticket">
+                    <tr>
+                        <td>#<c:out value="${ticket.ticketId}" /></td>
+                        <td><c:out value="${ticket.ticketdate}" /></td>
+                        <td><c:out value="${ticket.adultTicket}" /></td>
+                        <td><c:out value="${ticket.childticket}" /></td>
+                        <td>RM<c:out value="${ticket.total}" />0</td>
+                        <td>
+                            <a href="OrderServlet?action=pay&ticketid=<c:out value='${ticket.ticketId}'/>" class="btn  btn-small btn-success">Pay</a>
+                            <a href="OrderServlet?action=edit&ticketid=<c:out value='${ticket.ticketId}'/>" class="btn  btn-small btn-info">Edit</a>
+                            <a href="OrderServlet?action=delete&ticketid=<c:out value="${ticket.ticketId}"/>"  class="btn btn-small btn-danger">Delete</a></td>
+                    </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+        </div>
+    </section>
 
-</div>
 
 
 <!-- Open source code -->

@@ -1,6 +1,7 @@
 
 
 import java.io.IOException;
+import java.net.URLEncoder;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -52,6 +53,8 @@ public class TicketServlet extends HttpServlet {
 			TicketInfo price = dao.getPriceById(1);
 			request.setAttribute("price", price);
 			view.forward(request, response);
+		}else if(action.equalsIgnoreCase("changeprice")){
+			
 		}
 		
 		
@@ -71,9 +74,12 @@ public class TicketServlet extends HttpServlet {
 		price.setChildPrice(Float.parseFloat(request.getParameter("childPrice")));
 		
 		dao.updateTicket(price);
-		request.setAttribute("errorMessage", "Done update Ticket Price");
-		RequestDispatcher view = request.getRequestDispatcher(INSERT);
-		view.forward(request, response);
+		//request.setAttribute("errorMessage", "Done update Ticket Price");
+		
+		String message = "Done update Ticket Price. You're good to go";
+		response.sendRedirect("/CSC577/TicketServlet?action=insert&message=" + URLEncoder.encode(message, "UTF-8"));
+//		RequestDispatcher view = request.getRequestDispatcher(INSERT);
+//		view.forward(request, response);
 		
 		
 		

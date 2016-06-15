@@ -32,7 +32,7 @@ public class AuthenticationFilter implements Filter {
          
         HttpSession session = req.getSession(false);
          
-        if(session == null && !(uri.endsWith("login.jsp") || uri.endsWith("LoginDAO"))){
+        if(session == null && !(uri.endsWith("login.jsp") || uri.endsWith("LoginDAO") || uri.endsWith("index.jsp"))){
             this.context.log("Unauthorized access request");
             res.sendRedirect("login.jsp");
         }else{

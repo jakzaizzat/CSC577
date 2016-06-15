@@ -85,10 +85,11 @@ public class OrderDAO {
 		String ticketDate = bean.getTicketdate();
 		int ticketAdult = bean.getAdultTicket();
 		int ticketChild = bean.getChildticket();
+		double total = bean.getTotal();
 		System.out.println("In Update Ticket - TicketDAO");
 		System.out.println(ticketId + ticketDate + ticketAdult + ticketChild);
 		
-		String searchQuery = "UPDATE ticketorder SET ticketid='" + ticketId + "', orderdate='" + ticketDate+ "', adultticket= '" + ticketAdult + "', childticket='" + ticketChild + "' WHERE ticketid= '" + ticketId + "'  ";
+		String searchQuery = "UPDATE ticketorder SET ticketid='" + ticketId + "', orderdate='" + ticketDate+ "', adultticket= '" + ticketAdult + "', childticket='" + ticketChild + "',total='" + total + "' WHERE ticketid= '" + ticketId + "' ";
 		
 	
 		try{
@@ -120,6 +121,7 @@ public class OrderDAO {
 				ticket.setTicketdate(rs.getString("orderdate"));
 				ticket.setAdultTicket(rs.getInt("adultticket"));
 				ticket.setChildticket(rs.getInt("childticket"));
+				ticket.setTotal(rs.getDouble("total"));
 				
 				tickets.add(ticket);
 				
@@ -152,6 +154,7 @@ public class OrderDAO {
 				ticket.setAdultTicket(rs.getInt("adultticket"));
 				ticket.setChildticket(rs.getInt("childticket"));
 				ticket.setUsername(rs.getString("username"));
+				ticket.setTotal(rs.getDouble("total"));
 			}
 			
 		}catch(SQLException e){
@@ -184,6 +187,7 @@ public class OrderDAO {
 					ticket.setAdultTicket(rs.getInt("adultticket"));
 					ticket.setChildticket(rs.getInt("childticket"));
 					ticket.setUsername(rs.getString("username"));
+					ticket.setTotal(rs.getDouble("total"));
 					
 					tickets.add(ticket);
 					
@@ -219,7 +223,7 @@ public class OrderDAO {
 							ticket.setAdultTicket(rs.getInt("adultticket"));
 							ticket.setChildticket(rs.getInt("childticket"));
 							ticket.setUsername(rs.getString("username"));
-							
+							ticket.setTotal(rs.getDouble("total"));
 							tickets.add(ticket);
 							
 						}

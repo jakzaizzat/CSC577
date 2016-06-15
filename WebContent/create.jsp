@@ -6,67 +6,60 @@
 <jsp:include page="/WEB-INF/template/header.jsp"/>
 
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-  
-  <c:if test="${errorMessage != null}" >
-    <div class="alert alert-dismissible alert-success">
-		 <button type="button" class="close" data-dismiss="alert">×</button>
-		 <strong>${errorMessage}</strong> 
-	</div>
-  </c:if>  
-  
-  <h3 class="text-center">Hi,<strong><%= session.getAttribute("username") %></strong>. Want to buy ticket now? </h3>
-  
-  
-	
-  <form class="form-horizontal" method="POST" action="OrderServlet" name="formAddTicket">
-  
-  <input type="hidden" value="<%= session.getAttribute("username") %>"  name="username"/>
-  <input type="hidden" value="0"  name="payment"/>
-  
-  
-  
-  <fieldset>  
-    <div class="form-group">
-      <label for="inputEmail" class="col-md-2 control-label">Date</label>
-      <div class="col-md-10">
-        <input type="date" class="form-control" id="inputEmail" placeholder="Date" name="date">
-      </div>
-    </div>
-    <input type="text" name="price1" value="  <c:out value='${price.adultPrice}' /> " /> 
-    <div class="form-group">
-      <label for="adultTicket" class="col-md-2 control-label">Adult</label>
-      <div class="col-md-10">
-        <input type="number" class="form-control" id="adultTicket" placeholder="number" name="adult" id="adult">
-      </div>
-    </div>
-    <input type="text" name="price2" value="  <c:out value='${price.adultPrice}' /> " /> 
-    <div class="form-group">
-      <label for="childTicket" class="col-md-2 control-label">Child</label>
-      <div class="col-md-10">
-        <input type="number" class="form-control" id="childTicket" placeholder="number" name="child" id="child">
-      </div>
-    </div>
-    
-    <p>Total</p>
-    <input type="text" name="total" value=""/>
-    
-    <p class="total-price"></p>
-    
-    <div class="form-group">
-      <div class="col-md-10 col-md-offset-2">
-        <button type="button" class="btn btn-default">Cancel</button>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </div>
-    </div>
-  </fieldset>
-</form>
+<section class="sign-up section-padding text-center" id="download">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
 
-  </div>
+                    <c:if test="${errorMessage != null}" >
+                        <div class="alert alert-dismissible alert-success">
+                             <button type="button" class="close" data-dismiss="alert">×</button>
+                             <strong>${errorMessage}</strong> 
+                        </div>
+                      </c:if>
+                      
+                      <c:if test="${param.message != null}" >
+                      <div class="alert alert-dismissible alert-success">
+                             <button type="button" class="close" data-dismiss="alert">×</button>
+                             <strong>${param.message}</strong>
+                       </div>
+                      </c:if>
 
-</div>
+                    <h3>Hi, <strong><%= session.getAttribute("username") %></strong>. Get ticket online now</h3>
+                    <p>Grab your copy today</p>
+                    
+                    <form class="signup-form" action="OrderServlet" method="POST" role="form" name="formAddTicket">
 
+                        <input type="hidden" value="<%= session.getAttribute("username") %>"  name="username"/>
+                        <input type="hidden" value="0"  name="payment"/>
+
+
+                        <div class="form-input-group">
+                            <i class="fa fa-calendar"></i><input type="date" class="" placeholder="Enter your date" name="date" required>
+                        </div>
+
+                        <p>RM<span class="price1"><c:out value='${price.adultPrice}' />0</span> for Adult</p>
+                        
+                        <div class="form-input-group">
+                            <i class="fa fa-male"></i><input type="number" class="" placeholder="Adult Ticket" name="adult" value="0" id="adult" min="0" required>
+                        </div>
+
+                        <p>RM<span class="price2"><c:out value='${price.childPrice}' />0</span> for Child</p>
+
+                        <div class="form-input-group">
+                            <i class="fa fa-child"></i><input type="number" class="" placeholder="Child Ticket" name="child" id="child" value="0" min="0" required>
+                        </div>
+
+                        <p class="total-price" >Total:RM<span class="total-add"></span></p>
+                        <input type="hidden" class="total-price" name="total" id ="total" value=""/>
+
+                        <button type="submit" class="btn-fill sign-up-btn">Buy Now</button>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
 <jsp:include page="/WEB-INF/template/footer.jsp"/>

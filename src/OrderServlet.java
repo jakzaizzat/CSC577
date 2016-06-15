@@ -65,14 +65,14 @@ public class OrderServlet extends HttpServlet {
 			RequestDispatcher view = request.getRequestDispatcher(LIST_TICKET);
 			dao.deleteTicket(ticketid);
 			forward = LIST_TICKET;
-			request.setAttribute("tickets", dao.getAllTicketByUsernamePayment(username));
+			request.setAttribute("tickets", dao.getAllTicketByUsernameCart(username));
 			view.forward(request, response);
 		}else if(action.equalsIgnoreCase("edit")){
 			forward = EDIT;
 			
 			int ticketid = Integer.parseInt(request.getParameter("ticketid"));
 			
-			RequestDispatcher view = request.getRequestDispatcher(EDIT);
+			RequestDispatcher view = request.getRequestDispatcher("edit-ticket.jsp");
 			System.out.println("In Edit " + ticketid);
 			
 			OrderInfo ticket = dao.getTicketById(ticketid);

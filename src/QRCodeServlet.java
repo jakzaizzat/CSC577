@@ -26,7 +26,7 @@ public class QRCodeServlet extends HttpServlet {
 		String ticketid = request.getParameter("ticketid");
 		String username = request.getParameter("username");
 		 
-        ByteArrayOutputStream out = QRCode.from("Thanks for your order "+ username + ". Your ticket ID $" + ticketid + " is VALID. have fun.").to(
+        ByteArrayOutputStream out = QRCode.from("Thanks for your order "+ username + ". Your ticket ID RM" + ticketid + " is VALID. have fun.").to(
                 ImageType.PNG).withSize(300,300).stream();
          
         response.setContentType("image/png");
